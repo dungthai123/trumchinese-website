@@ -1,12 +1,13 @@
-import 'swiper/css/bundle';
+import "swiper/css/bundle";
 import "../../public/css/navbar.css";
 import "../../public/css/boxicons.min.css";
 import "./globals.css";
 
 import type { Metadata } from "next";
 import { Figtree, Outfit, Plus_Jakarta_Sans, Phudu } from "next/font/google";
-import BackToTop from '@/components/Layout/BackToTop';
-import AosAnimation from '@/components/Layout/AosAnimation';
+import BackToTop from "@/components/Layout/BackToTop";
+import AosAnimation from "@/components/Layout/AosAnimation";
+import { Analytics } from "@vercel/analytics/next";
 
 const figtree = Figtree({
   subsets: ["latin"],
@@ -38,25 +39,12 @@ export const metadata: Metadata = {
   description: "Ứng dụng học tiếng Trung cùng AI hàng đầu",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${figtree.variable} ${outfit.variable} ${plusJakartaSans.variable} ${phudu.variable}`}>
       <head>
-        <link
-          rel="icon"
-          href="/favicon.ico"
-          sizes="any"
-        />
-        <link
-          rel="icon"
-          href="/icon.png"
-          type="image/png"
-          sizes="32x32"
-        />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon.png" type="image/png" sizes="32x32" />
       </head>
       <body>
         {children}
@@ -66,6 +54,7 @@ export default function RootLayout({
 
         {/* AosAnimation */}
         <AosAnimation />
+        <Analytics />
       </body>
     </html>
   );
