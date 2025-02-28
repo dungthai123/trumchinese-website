@@ -1,0 +1,11 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /dashboard
+
+# Host
+Host: https://trumchinese.com
+
+# Sitemaps
+Sitemap: https://trumchinese.com/sitemap.xml

@@ -30,6 +30,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 const phudu = Phudu({
   subsets: ["latin"],
   variable: "--font-phudu",
+  style: "normal",
   display: "swap",
   weight: ["300", "400", "500", "600", "700"],
 });
@@ -37,7 +38,38 @@ const phudu = Phudu({
 export const metadata: Metadata = {
   title: "Trùm Chinese - 10X Hiệu suất học tiếng Trung",
   description: "Ứng dụng học tiếng Trung cùng AI hàng đầu",
+  keywords: "học tiếng Trung, học tiếng Trung online, HSK, luyện thi HSK, Trùm Chinese, học tiếng Trung AI",
+  authors: [{ name: "Trùm Chinese", url: "https://trumchinese.com" }],
+  icons: {
+    icon: "/images/logo.png",
+    shortcut: "/images/logo.png",
+    apple: "/images/logo.png",
+  },
+  openGraph: {
+    title: "Trùm Chinese - 10X Hiệu suất học tiếng Trung",
+    description: "Ứng dụng học tiếng Trung cùng AI hàng đầu",
+    url: "https://trumchinese.com",
+    type: "website",
+    locale: "vi_VN",
+    siteName: "Trùm Chinese",
+    images: [
+      {
+        url: "/images/background_cover.png",
+        width: 1200,
+        height: 630,
+        alt: "Trùm Chinese - 10X Hiệu suất học tiếng Trung",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Trùm Chinese - 10X Hiệu suất học tiếng Trung",
+    description: "Ứng dụng học tiếng Trung cùng AI hàng đầu",
+    images: ["/images/background_cover.png"],
+  },
 };
+
+console.log("Phudu Variable:", phudu.variable);
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
