@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     siteName: "Trùm Chinese",
     images: [
       {
-        url: "/images/background_cover.png",
+        url: "https://www.trumchinese.com/images/background_cover.png",
         width: 1200,
         height: 630,
         alt: "Trùm Chinese - 10X Hiệu suất học tiếng Trung",
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Trùm Chinese - 10X Hiệu suất học tiếng Trung",
     description: "Ứng dụng học tiếng Trung cùng AI hàng đầu",
-    images: ["/images/background_cover.png"],
+    images: ["https://www.trumchinese.com/images/background_cover.png"],
   },
 };
 
