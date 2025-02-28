@@ -1,0 +1,9 @@
+robotsTxtOptions: {
+  policies: [
+    {
+      userAgent: "*",
+      allow: "/",
+      disallow: ["/admin", "/dashboard"],
+    },
+  ],
+},

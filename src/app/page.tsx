@@ -18,17 +18,15 @@ export default function Home() {
     <>
       <div className="bg-white">
         <Navbar />
-        
+
         <div className="px-0">
           <HeroBanner />
-
         </div>
-
       </div>
 
       {/* <BorderLine /> */}
-      
-   {/* này là Phương pháp học */}
+
+      {/* này là Phương pháp học */}
       <FunFacts />
       {/* này là Phương Pháp từng bước*/}
       <WhatWeDo />
@@ -40,7 +38,7 @@ export default function Home() {
 
       {/* này là vừa học vừa nghe chill chill */}
       <div className="px-0">
-        <BrandsSlider />  
+        <BrandsSlider />
       </div>
 
       {/* này là testimonials */}
