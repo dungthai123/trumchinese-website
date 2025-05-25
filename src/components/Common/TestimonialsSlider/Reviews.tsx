@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 
-import clutchLogo from "/public/images/clutch-logo.png";
-import trustpilotLogo from "/public/images/trustpilot.png";
+import clutchLogo from "/public/images/clutch-logo.webp";
 
 const Reviews = () => {
   return (
@@ -62,7 +61,7 @@ const Reviews = () => {
             </div>
 
             <div className="flex items-center space-x-[30px] sm:space-x-[45px] rtl:space-x-reverse">
-              <Image src={trustpilotLogo} alt="trustpilotLogo" />
+              <span className="text-[#00B67A] font-bold text-lg">Trustpilot</span>
               <h4 className="text-black font-medium">7584+ Reviews</h4>
             </div>
           </div>

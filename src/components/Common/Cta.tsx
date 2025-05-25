@@ -61,7 +61,7 @@ const Cta = () => {
     <section ref={sectionRef} id="contactus" className="relative overflow-hidden text-center">
       {/* Background image */}
       <div 
-        className="absolute inset-0 w-full h-full bg-[url('/images/cta-bg.jpg')] bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 w-full h-full bg-[url('/images/cta-bg.webp')] bg-cover bg-center bg-no-repeat"
         style={{ filter: 'brightness(0.9)' }}  // Optional: slightly darken the image
       />
 
@@ -93,10 +93,10 @@ const Cta = () => {
         {/* Download Buttons */}
         <div className="flex justify-center gap-4 mb-12">
           <Link href="https://apps.apple.com/app/apple-store/id6468914724?pt=126639601&ct=landingpage0225&mt=8">
-            <Image src="/images/appstore-button.png" alt="App Store" width={160} height={50} />
+            <Image src="/images/heroBanner/appstore-button.webp" alt="App Store" width={160} height={50} />
           </Link>
           <Link href="https://play.google.com/store/apps/details?id=com.meophe.catchinese&hl=vi">
-            <Image src="/images/googleplay-button.png" alt="Google Play" width={160} height={50} />
+            <Image src="/images/heroBanner/googleplay-button.webp" alt="Google Play" width={160} height={50} />
           </Link>
         </div>
 

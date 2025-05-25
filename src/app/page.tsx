@@ -1,66 +1,115 @@
-import HeroBanner from "@/components/Home/PaidSearchAdAgency/HeroBanner";
+import HeroBanner from "@/components/Home/HeroBanner";
 import BorderLine from "@/components/Common/BorderLine";
-import WhatWeDo from "@/components/Home/PaidSearchAdAgency/WhatWeDo";
-import FunFacts from "@/components/Home/PaidSearchAdAgency/FunFacts";
-import ServicesCard from "@/components/Home/PaidSearchAdAgency/ServicesCard";
-import SuccessStories from "@/components/Home/PaidSearchAdAgency/SuccessStories";
-import BrandsSlider from "@/components/Common/BrandsSlider";
-import TestimonialsSlider from "@/components/Common/TestimonialsSlider";
-import Cta from "@/components/Common/Cta";
-import OurBlog from "@/components/Common/OurBlog";
-import Footer from "@/components/Layout/Footer";
 import Navbar from "@/components/Layout/Navbar";
-import OurExperts from "@/components/Common/OurExperts";
-import FaqContent from "@/components/Faq/FaqContent";
+import Footer from "@/components/Layout/Footer";
+import LazyWrapper from "@/components/Common/LazyWrapper";
+import { Suspense } from "react";
+
+// Lazy load components that are below the fold
+import dynamic from "next/dynamic";
+
+const WhatWeDo = dynamic(() => import("@/components/Home/WhatWeDo"), {
+  loading: () => <div className="h-96 bg-gray-100 animate-pulse rounded-lg" />
+});
+
+const FunFacts = dynamic(() => import("@/components/Home/FunFacts"), {
+  loading: () => <div className="h-64 bg-gray-100 animate-pulse rounded-lg" />
+});
+
+const ServicesCard = dynamic(() => import("@/components/Home/ServicesCard"), {
+  loading: () => <div className="h-80 bg-gray-100 animate-pulse rounded-lg" />
+});
+
+const SuccessStories = dynamic(() => import("@/components/Home/SuccessStories"), {
+  loading: () => <div className="h-96 bg-gray-100 animate-pulse rounded-lg" />
+});
+
+const BrandsSlider = dynamic(() => import("@/components/Common/BrandsSlider"), {
+  loading: () => <div className="h-32 bg-gray-100 animate-pulse rounded-lg" />
+});
+
+const TestimonialsSlider = dynamic(() => import("@/components/Common/TestimonialsSlider"), {
+  loading: () => <div className="h-64 bg-gray-100 animate-pulse rounded-lg" />
+});
+
+const Cta = dynamic(() => import("@/components/Common/Cta"), {
+  loading: () => <div className="h-48 bg-gray-100 animate-pulse rounded-lg" />
+});
+
+const OurExperts = dynamic(() => import("@/components/Common/OurExperts"), {
+  loading: () => <div className="h-80 bg-gray-100 animate-pulse rounded-lg" />
+});
+
+const FaqContent = dynamic(() => import("@/components/Faq/FaqContent"), {
+  loading: () => <div className="h-96 bg-gray-100 animate-pulse rounded-lg" />
+});
+
+const LearningSection = dynamic(() => import("@/components/Home/LearningSection"), {
+  loading: () => <div className="h-64 bg-gray-100 animate-pulse rounded-lg" />
+});
 
 export default function Home() {
   return (
     <>
       <div className="bg-white">
         <Navbar />
-
         <div className="px-0">
           <HeroBanner />
         </div>
       </div>
 
-      {/* <BorderLine /> */}
+      {/* Lazy load below-the-fold content */}
+      <LazyWrapper>
+        <FunFacts />
+      </LazyWrapper>
 
-      {/* này là Phương pháp học */}
-      <FunFacts />
-      {/* này là Phương Pháp từng bước*/}
-      <WhatWeDo />
+      <LazyWrapper>
+        <LearningSection />
+      </LazyWrapper>
 
-      {/* này là về đội của trùm chinese */}
-      <ServicesCard />
-      {/* này là featuré */}
-      <SuccessStories />
+      <LazyWrapper>
+        <WhatWeDo />
+      </LazyWrapper>
 
-      {/* này là vừa học vừa nghe chill chill */}
-      <div className="px-0">
-        <BrandsSlider />
-      </div>
+      <LazyWrapper>
+        <ServicesCard />
+      </LazyWrapper>
 
-      {/* này là testimonials */}
-      <div className="px-0">
-        <TestimonialsSlider />
-      </div>
+      <LazyWrapper>
+        <SuccessStories />
+      </LazyWrapper>
 
-      {/* này là gía bán */}
-      <div className="px-0">
-        <OurExperts />
-      </div>
+      <LazyWrapper>
+        <div className="px-0">
+          <BrandsSlider />
+        </div>
+      </LazyWrapper>
 
-      {/* này là FAQs */}
-      <div className="px-0">
-        <FaqContent />
-      </div>
+      <LazyWrapper>
+        <div className="px-0">
+          <TestimonialsSlider />
+        </div>
+      </LazyWrapper>
+
+      <LazyWrapper>
+        <div className="px-0">
+          <OurExperts />
+        </div>
+      </LazyWrapper>
+
+      <LazyWrapper>
+        <div className="px-0">
+          <FaqContent />
+        </div>
+      </LazyWrapper>
 
       <BorderLine />
 
-      <div className="px-0">
-        <Cta />
-      </div>
+      <LazyWrapper>
+        <div className="px-0">
+          <Cta />
+        </div>
+      </LazyWrapper>
 
       <Footer />
     </>

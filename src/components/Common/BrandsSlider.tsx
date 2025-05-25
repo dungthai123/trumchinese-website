@@ -9,16 +9,16 @@ import { FreeMode } from "swiper/modules";
 import { useRef } from "react";
 
 const books = [
-  { image: "/images/book1.png", title: "The Subtle Art of Not Giving a F*ck" },
-  { image: "/images/book2.png", title: "Love 2.0" },
-  { image: "/images/book3.png", title: "Food: WTF Should I Eat?" },
-  { image: "/images/book4.png", title: "High Output Management" },
-  { image: "/images/book5.png", title: "The Soulmate Experience" },
-  { image: "/images/book6.png", title: "Thinking, Fast and Slow" },
-  { image: "/images/book7.png", title: "Atomic Habits" },
-  { image: "/images/book8.png", title: "Deep Work" },
-  { image: "/images/book9.png", title: "The Psychology of Money" },
-  { image: "/images/book10.png", title: "Make Time" },
+  { image: "/images/book1.webp", title: "The Subtle Art of Not Giving a F*ck" },
+  { image: "/images/book2.webp", title: "Love 2.0" },
+  { image: "/images/book3.webp", title: "Food: WTF Should I Eat?" },
+  { image: "/images/book4.webp", title: "High Output Management" },
+  { image: "/images/book5.webp", title: "The Soulmate Experience" },
+  { image: "/images/book6.webp", title: "Thinking, Fast and Slow" },
+  { image: "/images/book7.webp", title: "Atomic Habits" },
+  { image: "/images/book8.webp", title: "Deep Work" },
+  { image: "/images/book9.webp", title: "The Psychology of Money" },
+  { image: "/images/book10.webp", title: "Make Time" },
 ];
 
 const BookCarousel = () => {

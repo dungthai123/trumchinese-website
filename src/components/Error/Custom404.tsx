@@ -8,7 +8,7 @@ const ErrorContent = () => {
     <>
       <div className="py-[60px] md:py-[80px] lg:py-[100px] xl:py-[120px] bg-[#fff] text-center">
         <div className="container mx-auto px-[12px] 2xl:px-0">
-          <img src="/images/error.png" alt="error-image" className="inline" />
+          <img src="/images/error.webp" alt="error-image" className="inline" />
 
           <h3 className="text-black text-[20px] md:text-[22px] lg:text-[30px] font-bold mt-[40px] mb-[15px] leading-[1.3]">
             Oops! That page can't be found

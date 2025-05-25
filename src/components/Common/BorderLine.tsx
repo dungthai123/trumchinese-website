@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import borderLine from "/public/images/border-line.png";
+import borderLine from "/public/images/border-line.webp";
 
 const BorderLine = () => {
   return (

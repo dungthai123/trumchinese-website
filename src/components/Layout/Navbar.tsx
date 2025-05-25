@@ -1,157 +1,96 @@
-"use client";
+"use client"
 
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { ArrowRight2 } from "iconsax-react";
-import Image from "next/image";
-
-import logo from "/public/images/logo.png";
+import type React from "react"
+import { useEffect, useState } from "react"
+import Link from "next/link"
+import Image from "next/image"
+import { usePathname } from "next/navigation"
+import { Menu, X, ArrowUpRight } from "lucide-react"
 
 const Navbar: React.FC = () => {
-  const currentRoute = usePathname();
+  const pathname = usePathname()
+  const [open, setOpen] = useState(false)
 
-  // Sticky Navbar
-  useEffect(() => {
-    let elementId = document.getElementById("navbar");
-    document.addEventListener("scroll", () => {
-      if (window.scrollY > 170) {
-        elementId?.classList.add("isSticky");
-      } else {
-        elementId?.classList.remove("isSticky");
-      }
-    });
-
-    return () => {
-      document.removeEventListener("scroll", () => {
-        if (window.scrollY > 170) {
-          elementId?.classList.add("isSticky");
-        } else {
-          elementId?.classList.remove("isSticky");
-        }
-      });
-    };
-  }, []);
-
-  // Toggle active class
-  const [isActive, setActive] = useState<boolean>(false);
-  const handleToggleSearchModal = () => {
-    setActive(!isActive);
-  };
+  const navItem = (href: string, label: string) => (
+    <Link
+      href={href}
+      className={`transition-colors whitespace-nowrap ${
+        pathname === href || (href === "/blog" && pathname.startsWith("/blog")) ? "font-semibold text-black" : "text-black/80"
+      } hover:text-black/60`}
+      onClick={() => setOpen(false)}
+    >
+      {label}
+    </Link>
+  )
 
   return (
-    <>
+    <nav className="fixed inset-x-0 top-4 z-50">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        {/* Left: App icon */}
+        <Link href="/" className="shrink-0">
+          <Image
+            src="/images/logo.webp"
+            alt="Trùm Chinese logo"
+            width={44}
+            height={44}
+            className="rounded-xl"
+          />
+        </Link>
+
+        {/* Center: Floating nav pill absolutely centered */}
+        <div className="absolute left-1/2 transform -translate-x-1/2 z-10">
+          <div className="hidden md:flex items-center gap-8 bg-gradient-to-b from-white via-white to-neutral-100 border border-gray-200 shadow-[0_4px_8px_rgba(0,0,0,0.05)] rounded-full px-8 py-3">
+            {navItem("/", "Trùm Chinese")}
+            {navItem("#features", "Tính năng")}
+            {navItem("/blog", "Blog")}
+            {navItem("#purchase", "Gói đăng ký")}
+            {navItem("#contactus", "Liên hệ")}
+          </div>
+        </div>
+
+        {/* Right: CTA download button */}
+        <Link
+          href="https://apps.apple.com"
+          className="hidden sm:inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-green-500 px-6 py-2 text-sm font-medium text-white shadow ring-1 ring-white"
+        >
+          Tải xuống Trùm Chinese
+          <ArrowUpRight size={16} />
+        </Link>
+
+        {/* Mobile menu icon */}
+        <button
+          onClick={() => setOpen(!open)}
+          className="inline-flex items-center justify-center p-2 rounded-md text-[#191919] md:hidden"
+        >
+          <span className="sr-only">Open main menu</span>
+          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
+      </div>
+
+      {/* Mobile dropdown */}
       <div
-        id="navbar"
-        className="navbar-area bg-[#BAE7FF] relative z-[2] py-[15px] lg:py-[20px] xl:py-0"
+        className={`md:hidden transition-all duration-200 ${
+          open ? "opacity-100 scale-100" : "pointer-events-none opacity-0 scale-95"
+        } origin-top`}
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <nav
-            className={`navbar relative flex flex-wrap ${
-              isActive ? "active" : ""
-            }`}
-          >
-            <div className="self-center">
-              <Link href="/">
-                <Image 
-                  src={logo} 
-                  className="inline w-[50px] md:w-[70px] h-auto" 
-                  alt="logo" 
-                />
-              </Link>
-            </div>
-
-            {/* Toggle button */}
-            <button
-              className="navbar-toggler absolute ml-auto right-0 rtl:left-0 rtl:right-auto top-[4px] xl:hidden"
-              type="button"
-              onClick={handleToggleSearchModal}
+        <div className="mx-4 mt-2 rounded-lg bg-white px-4 py-3 shadow-lg">
+          <div className="flex flex-col gap-3">
+            {navItem("#features", "Tính năng")}
+            {navItem("/blog", "Blog")}
+            {navItem("#purchase", "Gói đăng ký")}
+            {navItem("#contactus", "Liên hệ")}
+            <Link
+              href="https://apps.apple.com"
+              className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-green-500 px-5 py-2 text-sm font-medium text-white"
             >
-              <span className="burger-menu text-black cursor-pointer leading-none text-[30px]">
-                <i className="bx bx-menu"></i>
-              </span>
-            </button>
-
-            <div className="navbar-collapse flex self-center grow basis-auto">
-              <ul className="navbar-nav self-center flex-row mx-auto xl:flex">
-                <li className="xl:mx-[10px] 2xl:mx-[18px] py-[10px] lg:py-[15px] xl:py-[25px] 2xl:py-[30px] relative group last:mr-0 first:ml-0">
-                  <Link
-                    href="#services"
-                    className="text-black uppercase text-[16px] font-medium transition-all hover:text-[#FF7300] "
-                    // onClick={(e) => e.preventDefault()}
-                  >
-                    Về Trùm Chinese
-                  </Link>
-                </li>
-
-                <li className="xl:mx-[10px] 2xl:mx-[18px] py-[10px] lg:py-[15px] xl:py-[25px] 2xl:py-[30px] relative group last:mr-0 first:ml-0">
-                  <a
-                    href="#features"
-                    className="text-black uppercase text-[16px] font-medium transition-all hover:text-[#FF7300]"
-                    // onClick={(e) => e.preventDefault()}
-                  >
-                    Tính năng
-                  </a>
-
-                </li>
-
-                <li className="xl:mx-[10px] 2xl:mx-[18px] py-[10px] lg:py-[15px] xl:py-[25px] 2xl:py-[30px] relative group last:mr-0 first:ml-0">
-                  <Link
-                    href="#faqs"
-                    className="text-black uppercase text-[16px] font-medium transition-all hover:text-[#FF7300] "
-                    // onClick={(e) => e.preventDefault()}
-                  >
-                    Câu hỏi thường gặp
-                  </Link>
-
-                </li>
-
-                <li className="xl:mx-[10px] 2xl:mx-[18px] py-[10px] lg:py-[15px] xl:py-[25px] 2xl:py-[30px] relative group last:mr-0 first:ml-0">
-                  <Link
-                    href="#purchase"
-                    className={`uppercase text-[16px] font-medium transition-all hover:text-[#FF7300] ${
-                      currentRoute === "/about-us/"
-                        ? "text-[#EF4335]"
-                        : "text-black"
-                    }`}
-                  >
-                    Mua gói học
-                  </Link>
-                </li>
-
-                <li className="xl:mx-[10px] 2xl:mx-[18px] py-[10px] lg:py-[15px] xl:py-[25px] 2xl:py-[30px] relative group last:mr-0 first:ml-0">
-                  <Link
-                    href="#contactus"
-                    className={`uppercase text-[16px] font-medium transition-all hover:text-[#FF7300] ${
-                      currentRoute === "/contact-us/"
-                        ? "text-[#EF4335]"
-                        : "text-black"
-                    }`}
-                  >
-                    Liên hệ
-                  </Link>
-                </li>
-              </ul>
-
-              {/* Other options */}
-              <div className="other-options self-center border-t border-[#eeeeee] pt-[20px] xl:pt-[0] pb-[10px] xl:pb-[0] xl:border-none xl:ml-[20px] 2xl:ml-[15px]">
-                <Link
-                  href="#contactus"
-                  className="bg-black text-white text-[16px] font-medium inline-block uppercase rounded-full py-[15px] px-[30px] transition duration-500 ease-in-out hover:bg-[#FF7300]"
-                >
-                  TẢI APP NGAY{" "}
-                  <ArrowRight2
-                    className="inline-block relative -top-[2px]"
-                    size={20}
-                  />
-                </Link>
-              </div>
-            </div>
-          </nav>
+              Tải xuống Trùm Chinese
+              <ArrowUpRight size={16} />
+            </Link>
+          </div>
         </div>
       </div>
-    </>
-  );
-};
+    </nav>
+  )
+}
 
-export default Navbar;
+export default Navbar

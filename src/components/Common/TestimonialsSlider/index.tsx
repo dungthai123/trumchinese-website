@@ -51,7 +51,7 @@ const TestimonialsSlider = () => {
     <section
       ref={sectionRef}
       className="relative py-[120px] bg-[#F8F5ED] overflow-hidden"
-      style={{ backgroundImage: "url('/images/review-bg-pattern.png')", backgroundSize: "cover", backgroundPosition: "center" }}
+      style={{ backgroundImage: "url('/images/review-bg-pattern.webp')", backgroundSize: "cover", backgroundPosition: "center" }}
     >
       <div className="container mx-auto text-center">
         {/* Title Section */}

@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 const OurOffer = () => {
   return (
     <section id="purchase" className="relative py-[100px] bg-black text-center"
-      style={{ backgroundImage: "url('/images/offer-bg-pattern.png')", backgroundSize: "cover", backgroundPosition: "center" }}
+      style={{ backgroundImage: "url('/images/offer-bg-pattern.webp')", backgroundSize: "cover", backgroundPosition: "center" }}
     >
       <div className="container mx-auto px-6">
         {/* Title Section */}
@@ -43,7 +43,7 @@ const OurOffer = () => {
             href="https://www.facebook.com/trumtiengtrungHSK"
             className="inline-flex items-center px-6 py-3 bg-white text-black text-lg font-semibold rounded-full shadow-md hover:bg-gray-200 transition-all"
           >
-            <Image src="/images/messenger-icon.png" alt="Messenger" width={24} height={24} className="mr-2" />
+            <span className="mr-2 text-blue-600">💬</span>
             Nhận ưu đãi
           </Link>
         </motion.div>
@@ -78,7 +78,7 @@ const OurOffer = () => {
             }
           ].map((feature, i) => (
             <div key={i} className="bg-white text-black p-4 rounded-xl shadow-sm flex items-start gap-4">
-              <Image src="/images/feature-icon.png" alt="Feature" width={24} height={24} />
+              <Image src="/images/feature-icon.webp" alt="Feature" width={24} height={24} />
               <div>
                 <p className="font-semibold">{feature.title}</p>
                 <p className="text-sm text-gray-600">{feature.description}</p>
