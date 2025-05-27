@@ -117,7 +117,7 @@ const BlogSidebar: React.FC<BlogSidebarProps> = ({ categories, recentPosts, onSe
       </div>
 
       {/* Learning Resources */}
-      <div className="bg-white rounded-lg shadow-md p-6">
+      {/* <div className="bg-white rounded-lg shadow-md p-6">
         <h3 className="text-lg font-bold text-gray-900 mb-4">Tài liệu học tập</h3>
         <div className="space-y-3">
           <Link
@@ -149,7 +149,7 @@ const BlogSidebar: React.FC<BlogSidebarProps> = ({ categories, recentPosts, onSe
             Văn hóa Trung Quốc
           </Link>
         </div>
-      </div>
+      </div> */}
     </aside>
   );
 };
