@@ -63,7 +63,7 @@ body {
 p {
   line-height: 26px;
 }
-h1, h2, h3, h4, h5, h6, a, li {
+h1, h2, h3, h4, h5{
   font-family: var(--font-phudu);
 }
 .gradient-bg {

@@ -51,11 +51,6 @@ export default function ChineseLearningSection() {
               được cập nhật mỗi ngày
             </p>
 
-            <div className="mb-12">
-              <button className="flex items-center gap-2 rounded-full bg-[#34c759] px-6 py-3 text-white transition-all hover:bg-[#34c759]/90">
-                Tải xuống Trùm Chinese <ArrowRight className="h-5 w-5" />
-              </button>
-            </div>
 
             <div className="space-y-6">
               <h3 className="text-xl font-bold text-[#424d5d]">CHỌN ĐỂ NGHE THỬ</h3>

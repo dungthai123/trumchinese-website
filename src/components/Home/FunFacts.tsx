@@ -52,20 +52,19 @@ const CARDS = [
 
 const LanguageMethod = () => {
   return (
-    <section className="relative w-screen overflow-hidden py-20">
+    <section className="relative w-screen overflow-hidden py-10">
       {/* animated background */}
-      <Image
+      {/* <Image
         src="/images/4StepSection/boomanimation.gif"
         alt="Colorful pattern animation"
         fill
         className="object-cover -z-10"
         priority
-      />
+      /> */}
 
       {/* section content */}
       <div className="relative z-10 mx-auto max-w-[1440px] px-4 text-center">
         {/* Section Header */}
-        <div className={`elative h-[250px] flex justify-center`} />
 
 
         

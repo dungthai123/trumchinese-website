@@ -6,16 +6,29 @@ interface PaginationProps {
   currentPage: number;
   totalPages: number;
   basePath?: string;
+  searchParams?: Record<string, string>;
 }
 
-const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, basePath = '/blog' }) => {
+const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, basePath = '/blog', searchParams }) => {
   if (totalPages <= 1) return null;
 
   const getPageUrl = (page: number) => {
-    if (page === 1) {
-      return basePath;
+    const params = new URLSearchParams();
+    
+    // Add existing search parameters
+    if (searchParams) {
+      Object.entries(searchParams).forEach(([key, value]) => {
+        params.set(key, value);
+      });
     }
-    return `${basePath}?page=${page}`;
+    
+    // Add page parameter if not page 1
+    if (page > 1) {
+      params.set('page', page.toString());
+    }
+    
+    const queryString = params.toString();
+    return queryString ? `${basePath}?${queryString}` : basePath;
   };
 
   const generatePageNumbers = () => {

@@ -67,9 +67,9 @@ export default function Home() {
         <LearningSection />
       </LazyWrapper>
 
-      <LazyWrapper>
+      {/* <LazyWrapper>
         <WhatWeDo />
-      </LazyWrapper>
+      </LazyWrapper> */}
 
       <LazyWrapper>
         <ServicesCard />

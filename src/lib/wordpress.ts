@@ -282,4 +282,69 @@ export async function searchPosts(query: string, page: number = 1, perPage: numb
       currentPage: page,
     };
   }
+}
+
+// Get related posts based on categories and tags
+export async function getRelatedPosts(currentPostId: number, categories: number[], tags: number[], limit: number = 4): Promise<BlogPost[]> {
+  try {
+    // First try to get posts from the same categories
+    let relatedPosts: BlogPost[] = [];
+    
+    if (categories.length > 0) {
+      const categoryIds = categories.join(',');
+      const response = await fetch(
+        `${WORDPRESS_API_URL}/posts?categories=${categoryIds}&exclude=${currentPostId}&per_page=${limit}&_embed=wp:featuredmedia&_fields=id,date,modified,slug,title,content,excerpt,author,featured_media,categories,tags,yoast_head_json`,
+        {
+          next: { revalidate: 300 }, // Revalidate every 5 minutes
+        }
+      );
+
+      if (response.ok) {
+        const posts: WordPressBlogPost[] = await response.json();
+        relatedPosts = posts.map(transformWordPressPost);
+      }
+    }
+
+    // If we don't have enough posts from categories, try to get posts with similar tags
+    if (relatedPosts.length < limit && tags.length > 0) {
+      const tagIds = tags.join(',');
+      const excludeIds = [currentPostId, ...relatedPosts.map(p => p.id)].join(',');
+      const remainingLimit = limit - relatedPosts.length;
+
+      const response = await fetch(
+        `${WORDPRESS_API_URL}/posts?tags=${tagIds}&exclude=${excludeIds}&per_page=${remainingLimit}&_embed=wp:featuredmedia&_fields=id,date,modified,slug,title,content,excerpt,author,featured_media,categories,tags,yoast_head_json`,
+        {
+          next: { revalidate: 300 }, // Revalidate every 5 minutes
+        }
+      );
+
+      if (response.ok) {
+        const posts: WordPressBlogPost[] = await response.json();
+        relatedPosts = [...relatedPosts, ...posts.map(transformWordPressPost)];
+      }
+    }
+
+    // If we still don't have enough posts, fill with recent posts
+    if (relatedPosts.length < limit) {
+      const excludeIds = [currentPostId, ...relatedPosts.map(p => p.id)].join(',');
+      const remainingLimit = limit - relatedPosts.length;
+
+      const response = await fetch(
+        `${WORDPRESS_API_URL}/posts?exclude=${excludeIds}&per_page=${remainingLimit}&_embed=wp:featuredmedia&_fields=id,date,modified,slug,title,content,excerpt,author,featured_media,categories,tags,yoast_head_json`,
+        {
+          next: { revalidate: 300 }, // Revalidate every 5 minutes
+        }
+      );
+
+      if (response.ok) {
+        const posts: WordPressBlogPost[] = await response.json();
+        relatedPosts = [...relatedPosts, ...posts.map(transformWordPressPost)];
+      }
+    }
+
+    return relatedPosts.slice(0, limit);
+  } catch (error) {
+    console.error('Error fetching related posts:', error);
+    return [];
+  }
 } 
